@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpl7q2y7gsk7e"]
+
+[ext_resource type="Script" path="res://mob_2.gd" id="1_3p8iy"]
+[ext_resource type="Texture2D" uid="uid://n6u6m71sgnfa" path="res://assets/c2.png" id="1_q312x"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_88eoe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_q312x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Mob2" type="RigidBody2D" groups=["mobs"]]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_3p8iy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_88eoe")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-36, -22, -35, 0, -44, -3, -44, 4, -47, 10, -36, 7, -37, 19, -24, 25, 7, 27, 47, 12, 30, 0, 18, -19, 0, -26, -26, -26)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+metadata/_edit_group_ = true
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

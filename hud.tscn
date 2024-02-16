@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://rds8mmg0e1ra"]
+
+[ext_resource type="FontFile" uid="uid://bytb0ykx32n0k" path="res://fonts/Xolonium-Regular.ttf" id="1_26xt1"]
+[ext_resource type="Script" path="res://hud.gd" id="1_hbcqi"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_1rawa"]
+action = &"start_game"
+
+[sub_resource type="Shortcut" id="Shortcut_lrfnm"]
+events = [SubResource("InputEventAction_1rawa")]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_hbcqi")
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_right = 220.0
+offset_bottom = 70.0
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_26xt1")
+theme_override_font_sizes/font_size = 35
+text = "score : 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Message" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.5
+offset_top = -96.0
+offset_right = 576.5
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_26xt1")
+theme_override_font_sizes/font_size = 50
+text = "Fish Fish Fish"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StartButton" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -158.0
+offset_right = 100.0
+offset_bottom = -78.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_26xt1")
+theme_override_font_sizes/font_size = 50
+shortcut = SubResource("Shortcut_lrfnm")
+text = "Start"
+
+[node name="MessageTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
